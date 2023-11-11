@@ -1,4 +1,5 @@
-from worker import WorkerDB, Worker
+from worker import Worker
+from workerdb import WorkerDB
 
 workers = WorkerDB()
 
