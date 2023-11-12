@@ -2,6 +2,20 @@ import csv
 from worker import Worker
 
 
+def decorator_sort(func):
+    def wrapper(self, field):
+        func(self, field)
+        print(f"Sorted successfully by {field}")
+    return wrapper
+
+
+def decorator_search(func):
+    def wrapper(self, field):
+        print(f"Searched results for field {field}:")
+        func(self, field)
+    return wrapper
+
+
 class WorkerDB:
     def __init__(self):
         self.workers = []
@@ -48,16 +62,14 @@ class WorkerDB:
             for worker in self.workers:
                 print(worker)
 
+    @decorator_sort
     def sort_workers(self, field):
-        if not self.workers:
-            print("List is empty.")
-        else:
-            try:
-                self.workers.sort(key=lambda item: getattr(item, field))
-                print(f"Sorted successfully by {field}")
-            except AttributeError as e:
-                print(e)
+        try:
+            self.workers.sort(key=lambda item: getattr(item, field))
+        except AttributeError as e:
+            print(e)
 
+    @decorator_search
     def search_workers(self, field):
         found = []
         for worker in self.workers:
@@ -66,6 +78,5 @@ class WorkerDB:
         if not found:
             print(f"Worker with field {field} not found.")
         else:
-            print("Searched workers:")
             for worker in found:
-                print(f"Worker with field '{field}':\n {worker}")
+                print(worker)

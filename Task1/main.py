@@ -11,6 +11,7 @@ menu = """
     5. Display Workers
     6. Sort Workers
     7. Search Worker
+    0. Exit the program
 """
 
 while True:
@@ -46,5 +47,7 @@ while True:
     elif choice == '7':
         field = input("Enter field to search: ")
         workers.search_workers(field)
+    elif choice == '0':
+        break
     else:
         print("Invalid choice. Enter again.")
