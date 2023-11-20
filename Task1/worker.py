@@ -1,12 +1,15 @@
-c_id = 0
+def id_generator():
+    gen_id = 1
+    while True:
+        yield gen_id
+        gen_id += 1
 
 
 class Worker:
+    gen_id = id_generator()
+
     def __init__(self, name, surname, depart, salary):
-        global c_id
-        self.__id = c_id
-        c_id = c_id + 1
-        self.set_id(c_id)
+        self.__id = next(self.gen_id)
         self.name = name
         self.surname = surname
         self.depart = depart
