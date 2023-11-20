@@ -51,7 +51,8 @@ class WorkerDB:
                 name = row['name']
                 surname = row['surname']
                 depart = row['depart']
-                salary = float(row['salary'])
+                salary = row['salary']
+                salary = float(salary)
                 worker = Worker(name, surname, depart, salary)
                 self.add_worker(worker)
 
