@@ -4,15 +4,15 @@ from worker import Worker
 
 def decorator_sort(func):
     def wrapper(self, field):
-        func(self, field)
         print(f"Sorted successfully by {field}")
+        return func(self, field)
     return wrapper
 
 
 def decorator_search(func):
     def wrapper(self, field):
         print(f"Searched results for field {field}:")
-        func(self, field)
+        return func(self, field)
     return wrapper
 
 
@@ -79,5 +79,4 @@ class WorkerDB:
         if not found:
             print(f"Worker with field {field} not found.")
         else:
-            for worker in found:
-                print(worker)
+            return found

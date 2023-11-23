@@ -46,7 +46,12 @@ while True:
         workers.sort_workers(field)
     elif choice == '7':
         field = input("Enter field to search: ")
-        workers.search_workers(field)
+        found = workers.search_workers(field)
+        try:
+            for worker in found:
+                print(worker)
+        except Exception as e:
+            print(e)
     elif choice == '0':
         break
     else:
