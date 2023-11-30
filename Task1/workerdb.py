@@ -1,4 +1,5 @@
 import csv
+import matplotlib.pyplot as plt
 from worker import Worker
 
 
@@ -80,3 +81,20 @@ class WorkerDB:
             print(f"Worker with field {field} not found.")
         else:
             return found
+
+    def plot_departs(self):
+        departs = {}
+        for worker in self.workers:
+            if worker.depart not in departs:
+                departs[worker.depart] = 1
+            else:
+                departs[worker.depart] += 1
+
+        labels = []
+        sizes = []
+        for keys, values in departs.items():
+            labels.append(keys)
+            sizes.append(values)
+
+        plt.pie(sizes, labels=labels)
+        plt.show()

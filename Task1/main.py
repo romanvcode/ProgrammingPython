@@ -11,6 +11,7 @@ menu = """
     5. Display Workers
     6. Sort Workers
     7. Search Worker
+    8. Plot by Departments
     0. Exit the program
 """
 
@@ -52,6 +53,8 @@ while True:
                 print(worker)
         except Exception as e:
             print(e)
+    elif choice == '8':
+        workers.plot_departs()
     elif choice == '0':
         break
     else:
